@@ -11,7 +11,7 @@ export const UserDemographicsChart: React.FC = () => {
       formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
     legend: {
-      top: '5%',
+      top: '2%',
       left: 'center',
       textStyle: {
         color: '#ccc'
@@ -19,10 +19,28 @@ export const UserDemographicsChart: React.FC = () => {
     },
     series: [
       {
+        name: '性别分布',
+        type: 'pie',
+        radius: ['20%', '35%'],
+        center: ['28%', '60%'],
+        data: userDemographics.gender,
+        label: {
+          show: true,
+          color: '#cbd5e1',
+          formatter: '{b}: {c}'
+        },
+        itemStyle: {
+          borderColor: '#020617',
+          borderWidth: 2,
+          borderRadius: 4
+        },
+        color: ['#60a5fa', '#f472b6']
+      },
+      {
         name: '年龄段分布',
         type: 'pie',
-        radius: ['35%', '60%'],
-        center: ['50%', '55%'],
+        radius: ['35%', '55%'],
+        center: ['72%', '60%'],
         data: userDemographics.age,
         label: {
           show: true,
@@ -30,18 +48,17 @@ export const UserDemographicsChart: React.FC = () => {
           formatter: '{b}: {c}'
         },
         itemStyle: {
-            borderColor: '#020617',
-            borderWidth: 2,
-            borderRadius: 4
+          borderColor: '#020617',
+          borderWidth: 2,
+          borderRadius: 4
         },
-        // Cool spectrum
-        color: ['#c084fc', '#a78bfa', '#818cf8', '#60a5fa', '#38bdf8']
+        color: ['#c084fc', '#a78bfa', '#818cf8', '#38bdf8', '#2dd4bf']
       }
     ]
   };
 
   return (
-    <ChartContainer title="用户画像 (年龄段分布)">
+    <ChartContainer title="用户画像 (性别 & 年龄段)">
       <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
     </ChartContainer>
   );
